@@ -9,7 +9,8 @@ import java.util.function.Function;
 
 public enum InitialPosition {
 
-    ROOK(List.of(File.A, File.H), nonPawnRank()),
+    // 별도의 helper 메서드를 둔 이유가 있을까요?
+    ROOK(List.of(File.A, File.H), InitialPosition::nonPawnRankBySide),
     KNIGHT(List.of(File.B, File.G), nonPawnRank()),
     BISHOP(List.of(File.C, File.F), nonPawnRank()),
     QUEEN(List.of(File.D), nonPawnRank()),
@@ -18,7 +19,7 @@ public enum InitialPosition {
     ;
 
     private final List<File> files;
-    private final Function<Side, Rank> rank;
+    private final Function<Side, Rank> rank;     // 멤버 이름이 적절한가요?
 
     InitialPosition(List<File> files, Function<Side, Rank> rank) {
         this.files = files;

@@ -9,6 +9,7 @@ public class Pieces {
 
     private final List<Piece> pieces;
 
+    // 생성자를 합쳐보아요~
     public Pieces() {
         this.pieces = new ArrayList<>();
     }
@@ -20,6 +21,7 @@ public class Pieces {
     public boolean notAllEmpty() {
         return pieces.stream()
                 .anyMatch(Piece::isNotEmpty);
+        // .noneMatch(Piece::isEmpty)도 가능하지 않을까요?
     }
 
     @Override

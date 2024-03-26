@@ -23,6 +23,8 @@ public class Route {
         return new Route(pathPieces, targetPiece);
     }
 
+    //조금 더 쉬운 메서드 명을 지으면 이해하기 편할 것 같아요
+    //(개인적 의견) 저는 부정문보다 !긍정문이 더 잘 읽히네요 ^_^
     public boolean notAllPathPiecesEmpty() {
         return pathPieces.notAllEmpty();
     }

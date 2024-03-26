@@ -20,6 +20,7 @@ public class MessageResolver {
     }
 
     private List<Piece> rankPieces(Rank rank, List<Piece> pieces) {
+        // Effective Java item 35. ordinal 대신 인스턴스 필드를 사용하라
         int fromIndex = rank.ordinal() * File.length();
         int toIndex = fromIndex + File.length();
         return pieces.subList(fromIndex, toIndex);

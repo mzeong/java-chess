@@ -18,4 +18,5 @@ public enum Command {
     public boolean isMove() {
         return this == MOVE;
     }
+    // public enum인데, command == Command.Move과 command.isMove()에는 어떤 차이가 있나요?
 }

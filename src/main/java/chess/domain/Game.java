@@ -22,6 +22,7 @@ public class Game {
         switchTurn();
     }
 
+    // piece를 데려와서 물어보지 말고, board에게 물어보는 건 어떨까요?
     private void checkTurn(Position source) {
         Piece piece = board.findPiece(source);
         if (piece.isOpponentSide(currentSide)) {

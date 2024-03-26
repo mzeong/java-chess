@@ -38,6 +38,6 @@ public class GameManager {
 
     private boolean notEndGame() {
         Command command = inputView.readMoveOrEndCommand();
-        return command.isMove();
+        return command.isMove();    // command가 늘어나면 어떻게 될까요?
     }
 }

@@ -44,6 +44,7 @@ public class BoardCreator {
         initializePieces(board, InitialPosition.PAWN.positions(side), () -> new Pawn(side));
     }
 
+    // Supplier로 넘겨준 이유가 있을까요?
     private void initializePieces(Map<Position, Piece> board, List<Position> initialPositions, Supplier<Piece> pieceProvider) {
         initialPositions.forEach(
                 position -> board.put(position, pieceProvider.get())
