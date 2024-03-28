@@ -66,6 +66,10 @@ public abstract class Piece {
         return !isEmpty();
     }
 
+    public boolean isKing() {
+        return false;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;

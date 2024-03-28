@@ -14,4 +14,9 @@ public class King extends Piece {
         return (source.isSameFile(target) || source.hasOneFileGap(target)) &&
                 (source.isSameRank(target) || source.hasOneRankGap(target));
     }
+
+    @Override
+    public boolean isKing() {
+        return true;
+    }
 }
