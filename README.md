@@ -19,8 +19,11 @@
 
 ### 도메인
 
+- 체스 게임
+  - 체스판과 상태를 가진다.
 - Board
     - [x] source 위치에서 target 위치로 기물을 이동한다.
+    - [ ] King이 잡혔을 때 게임을 종료해야 한다.
 - BoardCreator
     - [x] 체스 게임을 할 수 있는 체스판을 초기화한다.
 - InitialPosition
