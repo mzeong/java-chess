@@ -23,7 +23,7 @@ public class GameManager {
         command.execute(game, outputView);
 
         while (command.isNotEnd() && game.isNotKingDead()) {
-            command = inputView.readCommand();
+            command = inputView.readFollowingCommand();
             command.execute(game, outputView);
         }
     }

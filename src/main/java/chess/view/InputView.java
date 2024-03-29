@@ -20,10 +20,10 @@ public class InputView {
         );
         System.out.println(message);
 
-        return CommandMapper.toStartOrEndCommand(scanner.nextLine());
+        return CommandMapper.toFirstCommand(scanner.nextLine());
     }
 
-    public Command readCommand() {
-        return CommandMapper.toCommand(scanner.nextLine());
+    public Command readFollowingCommand() {
+        return CommandMapper.toFollowingCommand(scanner.nextLine());
     }
 }
