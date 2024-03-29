@@ -1,5 +1,6 @@
-package chess.domain.board;
+package chess.domain.game;
 
+import chess.domain.board.BoardStatus;
 import chess.domain.piece.Side;
 import chess.domain.position.Position;
 import chess.domain.piece.Bishop;
@@ -14,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InitialBoardCreator implements BoardCreator {
+public class InitialGameCreator implements GameCreator {
 
     @Override
     public Map<Position, Piece> createBoard() {

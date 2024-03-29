@@ -1,6 +1,6 @@
 package chess.domain.piece;
 
-import chess.domain.board.InitialPosition;
+import chess.domain.game.InitialPosition;
 import chess.domain.route.Route;
 import chess.domain.position.Position;
 import java.util.List;

@@ -1,8 +1,8 @@
 package chess.controller;
 
 import chess.controller.command.Command;
-import chess.domain.Game;
-import chess.domain.board.InitialBoardCreator;
+import chess.domain.game.Game;
+import chess.domain.game.InitialGameCreator;
 import chess.view.InputView;
 import chess.view.OutputView;
 
@@ -17,7 +17,7 @@ public class GameManager {
     }
 
     public void run() {
-        Game game = new Game(new InitialBoardCreator());
+        Game game = new Game(new InitialGameCreator());
 
         Command command = inputView.readFirstCommand();
         command.execute(game, outputView);

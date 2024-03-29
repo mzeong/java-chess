@@ -1,7 +1,6 @@
-package chess.domain;
+package chess.domain.game;
 
 import chess.domain.board.Board;
-import chess.domain.board.BoardCreator;
 import chess.domain.board.BoardStatus;
 import chess.domain.position.Position;
 import chess.domain.piece.Piece;
@@ -12,9 +11,9 @@ public class Game {
     private final Board board;
     private BoardStatus boardStatus;
 
-    public Game(BoardCreator boardCreator) {
-        this.board = Board.from(boardCreator);
-        this.boardStatus = boardCreator.createBoardStatus();
+    public Game(GameCreator gameCreator) {
+        this.board = Board.from(gameCreator);
+        this.boardStatus = gameCreator.createBoardStatus();
     }
 
     public void proceedTurn(Position source, Position target) {

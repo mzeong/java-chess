@@ -1,5 +1,6 @@
 package chess.domain.board;
 
+import chess.domain.game.GameCreator;
 import chess.domain.route.Route;
 import chess.domain.route.Path;
 import chess.domain.route.Pieces;
@@ -19,8 +20,8 @@ public class Board {
         this.board = new LinkedHashMap<>(board);
     }
 
-    public static Board from(BoardCreator boardCreator) {
-        return new Board(boardCreator.createBoard());
+    public static Board from(GameCreator gameCreator) {
+        return new Board(gameCreator.createBoard());
     }
 
     public BoardStatus move(Position source, Position target) {

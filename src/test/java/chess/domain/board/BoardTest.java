@@ -1,5 +1,6 @@
 package chess.domain.board;
 
+import chess.domain.game.InitialGameCreator;
 import chess.domain.route.Path;
 import chess.domain.route.Pieces;
 import java.util.List;
@@ -37,7 +38,7 @@ public class BoardTest {
     @DisplayName("경로에 있는 기물을 찾는다.")
     @Test
     void findPieces() {
-        Board board = Board.from(new InitialBoardCreator());
+        Board board = Board.from(new InitialGameCreator());
         Path path = new Path(List.of(A7, A6, A5, A4, A3, A2));
 
         Pieces pieces = board.findPieces(path);
@@ -50,7 +51,7 @@ public class BoardTest {
     @DisplayName("기물을 source 위치에서 target 위치로 옮긴다.")
     @Test
     void move() {
-        Board board = Board.from(new InitialBoardCreator());
+        Board board = Board.from(new InitialGameCreator());
 
         board.move(B2, B3);
 

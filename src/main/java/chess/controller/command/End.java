@@ -1,6 +1,6 @@
 package chess.controller.command;
 
-import chess.domain.Game;
+import chess.domain.game.Game;
 import chess.view.OutputView;
 
 public class End implements Command {
