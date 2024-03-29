@@ -15,21 +15,24 @@ public class Board {
 
     private final Map<Position, Piece> board;
 
-    public Board(BoardCreator boardCreator) {
-        this(boardCreator.create());
-    }
-
     public Board(Map<Position, Piece> board) {
         this.board = new LinkedHashMap<>(board);
     }
 
-    public void move(Position source, Position target) {
+    public static Board from(BoardCreator boardCreator) {
+        return new Board(boardCreator.create());
+    }
+
+    public BoardStatus move(Position source, Position target) {
         Piece sourcePiece = findPiece(source);
+        Piece targetPiece = findPiece(target);
         Route route = Route.create(source, target, this);
         sourcePiece.checkValidMove(source, target, route);
 
         board.put(source, Empty.instance());
         board.put(target, sourcePiece);
+
+        return BoardStatus.of(sourcePiece, targetPiece);
     }
 
     public Piece findPiece(Position position) {
