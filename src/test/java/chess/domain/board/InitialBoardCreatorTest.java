@@ -85,7 +85,7 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class BoardCreatorTest {
+class InitialBoardCreatorTest {
 
     /*
     RNBQKBNR  8
@@ -102,9 +102,9 @@ class BoardCreatorTest {
     @DisplayName("초기화된 체스판을 생성한다.")
     @Test
     void create() {
-        BoardCreator boardCreator = new BoardCreator();
+        InitialBoardCreator initialBoardCreator = new InitialBoardCreator();
 
-        Map<Position, Piece> board = boardCreator.create();
+        Map<Position, Piece> board = initialBoardCreator.create();
 
         assertThat(board).containsExactly(
                 Map.entry(A8, BLACK_ROOK),
