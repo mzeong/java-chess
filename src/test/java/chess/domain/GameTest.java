@@ -1,14 +1,21 @@
 package chess.domain;
 
+import static chess.fixture.PieceFixture.BLACK_KING;
+import static chess.fixture.PieceFixture.WHITE_QUEEN;
 import static chess.fixture.PositionFixture.A2;
 import static chess.fixture.PositionFixture.A3;
 import static chess.fixture.PositionFixture.A6;
 import static chess.fixture.PositionFixture.A7;
 import static chess.fixture.PositionFixture.B2;
 import static chess.fixture.PositionFixture.B3;
+import static chess.fixture.PositionFixture.E8;
+import static chess.fixture.PositionFixture.H5;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import chess.domain.board.InitialBoardCreator;
+import java.util.HashMap;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +36,7 @@ class GameTest {
     @DisplayName("검은색 진영이 먼저 턴을 진행하면 예외가 발생한다.")
     @Test
     void notProceedBlackTurn() {
-        Game game = new Game();
+        Game game = new Game(new InitialBoardCreator());
 
         assertThatThrownBy(() -> game.proceedTurn(A7, A6))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -39,7 +46,7 @@ class GameTest {
     @DisplayName("흰색 진영이 먼저 턴을 진행한다.")
     @Test
     void proceedWhiteTurn() {
-        Game game = new Game();
+        Game game = new Game(new InitialBoardCreator());
 
         assertThatCode(() -> game.proceedTurn(A2, A3))
                 .doesNotThrowAnyException();
@@ -60,7 +67,7 @@ class GameTest {
     @DisplayName("흰색 진영 다음에 흰색 진영이 턴을 진행하면 예외가 발생한다.")
     @Test
     void notProceedWhiteTurn() {
-        Game game = new Game();
+        Game game = new Game(new InitialBoardCreator());
         game.proceedTurn(A2, A3);
 
         assertThatThrownBy(() -> game.proceedTurn(B2, B3))
@@ -71,10 +78,35 @@ class GameTest {
     @DisplayName("흰색 진영 다음에 검은색 진영이 턴을 진행한다.")
     @Test
     void proceedBlackTurn() {
-        Game game = new Game();
+        Game game = new Game(new InitialBoardCreator());
         game.proceedTurn(A2, A3);
 
         assertThatCode(() -> game.proceedTurn(A7, A6))
                 .doesNotThrowAnyException();
+    }
+
+    /*
+    ....K...  8
+    ........  7
+    ........  6
+    .......q  5
+    ........  4
+    ........  3
+    ........  2
+    ........  1
+
+    abcdefgh
+     */
+    @DisplayName("King을 잡다.")
+    @Test
+    void catchKing() {
+        Game game = new Game(() -> new HashMap<>() {{
+            put(E8, BLACK_KING);
+            put(H5, WHITE_QUEEN);
+        }});
+
+        game.proceedTurn(H5, E8);
+
+        assertThat(game.isNotKingDead()).isFalse();
     }
 }

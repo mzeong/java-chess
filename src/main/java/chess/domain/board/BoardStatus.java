@@ -18,4 +18,16 @@ public enum BoardStatus {
         }
         return BLACK_TURN;
     }
+
+    public boolean isWhiteTurn() {
+        return this == WHITE_TURN;
+    }
+
+    public boolean isBlackTurn() {
+        return this == BLACK_TURN;
+    }
+
+    public boolean isKingDead() {
+        return this == KING_DEAD;
+    }
 }

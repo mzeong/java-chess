@@ -50,6 +50,10 @@ public abstract class Piece {
         return side.isBlack();
     }
 
+    public boolean isWhite() {
+        return side.isWhite();
+    }
+
     public boolean isSameSide(Side otherSide) {
         return side.isSame(otherSide);
     }
