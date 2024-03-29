@@ -1,9 +1,9 @@
-package chess.controller;
+package chess.controller.command;
 
 import chess.domain.Game;
 import chess.view.OutputView;
 
-public class End implements Command1 {
+public class End implements Command {
 
     @Override
     public void execute(Game game, OutputView outputView) {

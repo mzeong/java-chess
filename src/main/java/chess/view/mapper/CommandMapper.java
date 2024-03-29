@@ -1,45 +1,60 @@
 package chess.view.mapper;
 
-import chess.domain.Command;
-
+import chess.controller.command.Command;
+import chess.controller.command.End;
+import chess.controller.command.Move;
+import chess.controller.command.Start;
+import chess.domain.position.Position;
 import java.util.Arrays;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 public enum CommandMapper {
 
-    START("start", Command.START),
-    END("end", Command.END),
-    MOVE("move", Command.MOVE),
+    START(input -> input.equals("start"), input -> new Start()),
+    END(input -> input.equals("end"), input -> new End()),
+    MOVE(CommandMapper::isMove, CommandMapper::toMove),
     ;
 
-    private final String input;
-    private final Command command;
+    private final Function<String, Boolean> isCommand;
+    private final Function<String, Command> toCommand;
 
-    CommandMapper(String input, Command command) {
-        this.input = input;
-        this.command = command;
+    CommandMapper(Function<String, Boolean> isCommand, Function<String, Command> toCommand) {
+        this.isCommand = isCommand;
+        this.toCommand = toCommand;
+    }
+
+    private static boolean isMove(String input) {
+        String[] split = input.split(" ");
+        return split.length == 3 && split[0].equals("move");
+    }
+
+    private static Command toMove(String input) {
+        String[] split = input.split(" ");
+        Position source = toPosition(split[1]);
+        Position target = toPosition(split[2]);
+        return new Move(source, target);
+    }
+
+    private static Position toPosition(String string) {
+        String file = string.substring(0, 1);
+        String rank = string.substring(1);
+        return new Position(FileMapper.from(file), RankMapper.from(rank));
     }
 
     public static Command toStartOrEndCommand(String input) {
-        Command command = toCommand(input);
-        if (command.isMove()) {
-            throw new IllegalArgumentException("게임 시작을 안 했습니다.");
-        }
-        return command;
+        return Stream.of(START, END)
+                .filter(it -> it.isCommand.apply(input))
+                .findAny()
+                .map(it -> it.toCommand.apply(input))
+                .orElseThrow(() -> new IllegalArgumentException("사용할 수 없는 명령어입니다."));
     }
 
-    public static Command toMoveOrEndCommand(String input) {
-        Command command = toCommand(input);
-        if (command.isStart()) {
-            throw new IllegalArgumentException("이미 게임 시작을 했습니다.");
-        }
-        return command;
-    }
-
-    private static Command toCommand(String input) {
+    public static Command toCommand(String input) {
         return Arrays.stream(values())
-                .filter(it -> it.input.equals(input))
-                .findFirst()
-                .map(it -> it.command)
+                .filter(it -> it.isCommand.apply(input))
+                .findAny()
+                .map(it -> it.toCommand.apply(input))
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 명령어입니다."));
     }
 }

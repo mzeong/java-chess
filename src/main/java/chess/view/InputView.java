@@ -1,12 +1,7 @@
 package chess.view;
 
-import chess.domain.Command;
-import chess.domain.position.File;
-import chess.domain.position.Rank;
-import chess.domain.position.Position;
+import chess.controller.command.Command;
 import chess.view.mapper.CommandMapper;
-import chess.view.mapper.FileMapper;
-import chess.view.mapper.RankMapper;
 
 import java.util.Scanner;
 
@@ -16,7 +11,7 @@ public class InputView {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public Command readStartOrEndCommand() {
+    public Command readFirstCommand() {
         String message = String.join(LINE_SEPARATOR,
                 "> 체스 게임을 시작합니다.",
                 "> 게임 시작 : start",
@@ -28,24 +23,7 @@ public class InputView {
         return CommandMapper.toStartOrEndCommand(scanner.nextLine());
     }
 
-    public Command readMoveOrEndCommand() {
-        return CommandMapper.toMoveOrEndCommand(scanner.next());
-    }
-
-    public Position readSourcePosition() {
-        return readPosition();
-    }
-
-    public Position readTargetPosition() {
-        Position position = readPosition();
-        scanner.nextLine();
-        return position;
-    }
-
-    private Position readPosition() {
-        String input = scanner.next();
-        File file = FileMapper.from(input.substring(0, 1));
-        Rank rank = RankMapper.from(input.substring(1));
-        return new Position(file, rank);
+    public Command readCommand() {
+        return CommandMapper.toCommand(scanner.nextLine());
     }
 }

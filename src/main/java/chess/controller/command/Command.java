@@ -1,9 +1,9 @@
-package chess.controller;
+package chess.controller.command;
 
 import chess.domain.Game;
 import chess.view.OutputView;
 
-public interface Command1 {
+public interface Command {
 
     void execute(Game game, OutputView outputView);
 

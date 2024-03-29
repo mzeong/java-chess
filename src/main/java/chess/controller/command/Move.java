@@ -1,10 +1,10 @@
-package chess.controller;
+package chess.controller.command;
 
 import chess.domain.Game;
 import chess.domain.position.Position;
 import chess.view.OutputView;
 
-public class Move implements Command1 {
+public class Move implements Command {
 
     private final Position source;
     private final Position target;
