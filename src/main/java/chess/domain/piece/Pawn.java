@@ -69,4 +69,21 @@ public class Pawn extends Piece {
     private boolean isUpOne(Position source, Position target) {
         return target.hasHigherRankByOne(source) && source.isSameFile(target);
     }
+
+    @Override
+    public double score(List<Piece> pieces) {
+        int sameSidePawnCount = countSameSidePawn(pieces);
+
+        if (sameSidePawnCount > 1) {
+            return 0.5;
+        }
+        return 1;
+    }
+
+    private int countSameSidePawn(List<Piece> pieces) {
+        return (int) pieces.stream()
+                .filter(piece -> this.getClass() == piece.getClass() &&
+                        (this.isBlack() && piece.isBlack() || this.isWhite() && piece.isWhite()))
+                .count();
+    }
 }

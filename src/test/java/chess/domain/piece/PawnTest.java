@@ -6,13 +6,17 @@ import chess.fixture.MovePathFixture;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static chess.fixture.PieceFixture.BLACK_KING;
 import static chess.fixture.PieceFixture.BLACK_PAWN;
+import static chess.fixture.PieceFixture.WHITE_KING;
+import static chess.fixture.PieceFixture.WHITE_KNIGHT;
 import static chess.fixture.PieceFixture.WHITE_PAWN;
 import static chess.fixture.PositionFixture.C3;
 import static chess.fixture.PositionFixture.C5;
@@ -272,5 +276,33 @@ public class PawnTest {
         private static Stream<Arguments> immovableTargets() {
             return PositionFixture.immovablePositions(List.of(C5, E5), D4);
         }
+    }
+
+    @DisplayName("같은 색의 폰이 없는 경우 1점을 준다.")
+    @Test
+    void scoreWhenNoSameSidePawn() {
+        List<Piece> pieces = List.of(
+                BLACK_KING,
+                BLACK_PAWN
+        );
+
+        double score = BLACK_PAWN.score(pieces);
+
+        assertThat(score).isEqualTo(1);
+    }
+
+    @DisplayName("같은 색의 폰이 있는 경우 0.5점을 준다.")
+    @Test
+    void scoreWhenSameSidePawnExist() {
+        List<Piece> pieces = List.of(
+                WHITE_KNIGHT,
+                WHITE_PAWN,
+                WHITE_PAWN,
+                WHITE_KING
+        );
+
+        double score = WHITE_PAWN.score(pieces);
+
+        assertThat(score).isEqualTo(0.5);
     }
 }

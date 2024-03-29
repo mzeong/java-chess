@@ -2,6 +2,7 @@ package chess.domain.piece;
 
 import chess.domain.route.Route;
 import chess.domain.position.Position;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class Piece {
@@ -13,6 +14,8 @@ public abstract class Piece {
     }
 
     abstract boolean hasFollowedRule(Position source, Position target, Route route);
+
+    public abstract double score(List<Piece> pieces);
 
     public void checkValidMove(Position source, Position target, Route route) {
         checkDifferentPosition(source, target);
