@@ -17,7 +17,7 @@ import java.util.Map;
 public class InitialBoardCreator implements BoardCreator {
 
     @Override
-    public Map<Position, Piece> create() {
+    public Map<Position, Piece> createBoard() {
         Map<Position, Piece> board = new LinkedHashMap<>();
         generateSquares(board);
         initializeSquares(board);
@@ -48,5 +48,10 @@ public class InitialBoardCreator implements BoardCreator {
         initialPositions.forEach(
                 position -> board.put(position, piece)
         );
+    }
+
+    @Override
+    public BoardStatus createBoardStatus() {
+        return BoardStatus.WHITE_TURN;
     }
 }

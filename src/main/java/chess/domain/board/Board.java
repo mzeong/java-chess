@@ -20,7 +20,7 @@ public class Board {
     }
 
     public static Board from(BoardCreator boardCreator) {
-        return new Board(boardCreator.create());
+        return new Board(boardCreator.createBoard());
     }
 
     public BoardStatus move(Position source, Position target) {

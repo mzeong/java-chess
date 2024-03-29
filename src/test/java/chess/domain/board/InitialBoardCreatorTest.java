@@ -104,7 +104,7 @@ class InitialBoardCreatorTest {
     void create() {
         InitialBoardCreator initialBoardCreator = new InitialBoardCreator();
 
-        Map<Position, Piece> board = initialBoardCreator.create();
+        Map<Position, Piece> board = initialBoardCreator.createBoard();
 
         assertThat(board).containsExactly(
                 Map.entry(A8, BLACK_ROOK),

@@ -10,10 +10,11 @@ import java.util.List;
 public class Game {
 
     private final Board board;
-    private BoardStatus boardStatus = BoardStatus.WHITE_TURN;
+    private BoardStatus boardStatus;
 
     public Game(BoardCreator boardCreator) {
         this.board = Board.from(boardCreator);
+        this.boardStatus = boardCreator.createBoardStatus();
     }
 
     public void proceedTurn(Position source, Position target) {

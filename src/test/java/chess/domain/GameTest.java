@@ -14,8 +14,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import chess.domain.board.BoardCreator;
+import chess.domain.board.BoardStatus;
 import chess.domain.board.InitialBoardCreator;
+import chess.domain.piece.Piece;
+import chess.domain.position.Position;
 import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -100,10 +105,20 @@ class GameTest {
     @DisplayName("King을 잡다.")
     @Test
     void catchKing() {
-        Game game = new Game(() -> new HashMap<>() {{
-            put(E8, BLACK_KING);
-            put(H5, WHITE_QUEEN);
-        }});
+        Game game = new Game(new BoardCreator() {
+            @Override
+            public Map<Position, Piece> createBoard() {
+                return new HashMap<>() {{
+                    put(E8, BLACK_KING);
+                    put(H5, WHITE_QUEEN);
+                }};
+            }
+
+            @Override
+            public BoardStatus createBoardStatus() {
+                return BoardStatus.WHITE_TURN;
+            }
+        });
 
         game.proceedTurn(H5, E8);
 

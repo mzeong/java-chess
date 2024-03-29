@@ -6,5 +6,7 @@ import java.util.Map;
 
 public interface BoardCreator {
 
-    Map<Position, Piece> create();
+    Map<Position, Piece> createBoard();
+
+    BoardStatus createBoardStatus();
 }
