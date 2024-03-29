@@ -5,9 +5,8 @@ import chess.controller.command.End;
 import chess.controller.command.Move;
 import chess.controller.command.Start;
 import chess.domain.position.Position;
-import java.util.Arrays;
+import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
 public enum CommandMapper {
 
@@ -42,19 +41,19 @@ public enum CommandMapper {
         return new Position(FileMapper.from(file), RankMapper.from(rank));
     }
 
-    public static Command toStartOrEndCommand(String input) {
-        return Stream.of(START, END)
+    public static Command toFirstCommand(String input) {
+        return toCommand(Set.of(START, END), input);
+    }
+
+    public static Command toFollowingCommand(String input) {
+        return toCommand(Set.of(MOVE, END), input);
+    }
+
+    private static Command toCommand(Set<CommandMapper> commands, String input) {
+        return commands.stream()
                 .filter(it -> it.isCommand.apply(input))
                 .findAny()
                 .map(it -> it.toCommand.apply(input))
                 .orElseThrow(() -> new IllegalArgumentException("사용할 수 없는 명령어입니다."));
-    }
-
-    public static Command toCommand(String input) {
-        return Arrays.stream(values())
-                .filter(it -> it.isCommand.apply(input))
-                .findAny()
-                .map(it -> it.toCommand.apply(input))
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 명령어입니다."));
     }
 }
