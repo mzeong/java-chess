@@ -1,4 +1,4 @@
-package chess;
+package chess.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -6,6 +6,7 @@ import chess.domain.game.Game;
 import chess.domain.game.InitialGameCreator;
 import chess.domain.piece.Piece;
 import chess.domain.position.Position;
+import chess.service.BoardConverter;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package chess;
+package chess.service;
 
 import chess.domain.piece.Bishop;
 import chess.domain.piece.Empty;
