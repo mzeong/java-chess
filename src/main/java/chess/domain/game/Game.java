@@ -2,8 +2,11 @@ package chess.domain.game;
 
 import chess.domain.board.Board;
 import chess.domain.board.BoardStatus;
+import chess.domain.piece.Side;
+import chess.domain.position.File;
 import chess.domain.position.Position;
 import chess.domain.piece.Piece;
+import java.util.Arrays;
 import java.util.List;
 
 public class Game {
@@ -35,5 +38,17 @@ public class Game {
 
     public List<Piece> board() {
         return board.pieces();
+    }
+
+    public Score calculateScore() {
+        double blackScore = calculateSideScore(Side.BLACK);
+        double whiteScore = calculateSideScore(Side.WHITE);
+        return new Score(blackScore, whiteScore);
+    }
+
+    private double calculateSideScore(Side side) {
+        return Arrays.stream(File.values())
+                .mapToDouble(file -> board.calculateSameSidePiecesScoreInFile(side, file))
+                .sum();
     }
 }
