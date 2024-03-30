@@ -1,6 +1,8 @@
 package chess.domain.board;
 
 import chess.domain.game.GameCreator;
+import chess.domain.piece.Side;
+import chess.domain.position.File;
 import chess.domain.route.Route;
 import chess.domain.route.Path;
 import chess.domain.route.Pieces;
@@ -47,6 +49,25 @@ public class Board {
                 .toList();
 
         return new Pieces(pieces);
+    }
+
+    public double calculateSameSidePiecesScoreInFile(Side side, File file) {
+        List<Piece> pieces = findSameSidePiecesInFile(side, file);
+
+        return pieces.stream()
+                .mapToDouble(piece -> piece.score(pieces))
+                .sum();
+    }
+
+    private List<Piece> findSameSidePiecesInFile(Side side, File file) {
+        return board.entrySet().stream()
+                .filter(entry -> isSameSidePieceInFile(entry, side, file))
+                .map(Entry::getValue)
+                .toList();
+    }
+
+    private boolean isSameSidePieceInFile(Entry<Position, Piece> entry, Side side, File file) {
+        return entry.getKey().isSameFile(file) && entry.getValue().isSameSide(side);
     }
 
     public List<Piece> pieces() {
