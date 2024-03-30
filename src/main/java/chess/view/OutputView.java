@@ -1,5 +1,6 @@
 package chess.view;
 
+import chess.domain.game.Score;
 import chess.domain.piece.Piece;
 import java.util.List;
 
@@ -13,5 +14,9 @@ public class OutputView {
 
     public void printBoard(List<Piece> pieces) {
         System.out.println(messageResolver.resolveBoardMessage(pieces));
+    }
+
+    public void printScore(Score score) {
+        System.out.println(messageResolver.resolveScoreMessage(score));
     }
 }

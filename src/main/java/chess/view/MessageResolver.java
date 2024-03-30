@@ -1,6 +1,8 @@
 package chess.view;
 
+import chess.domain.game.Score;
 import chess.domain.piece.Piece;
+import chess.domain.piece.Side;
 import chess.domain.position.File;
 import chess.domain.position.Rank;
 import chess.view.mapper.PieceMapper;
@@ -29,5 +31,21 @@ public class MessageResolver {
         return pieces.stream()
                 .map(PieceMapper::toText)
                 .collect(Collectors.joining(""));
+    }
+
+    public String resolveScoreMessage(Score score) {
+        String message = String.format("검은색: %.1f, 흰색: %.1f, 이긴 진영: %s", score.blackScore(), score.whiteScore(),
+                resolveWinSideMessage(score.winSide()));
+        return String.join("", message, LINE_SEPARATOR);
+    }
+
+    private String resolveWinSideMessage(Side side) {
+        if (side.isBlack()) {
+            return "검은색";
+        }
+        if (side.isWhite()) {
+            return "흰색";
+        }
+        return "없음";
     }
 }

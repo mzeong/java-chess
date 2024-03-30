@@ -4,6 +4,7 @@ import chess.controller.command.Command;
 import chess.controller.command.End;
 import chess.controller.command.Move;
 import chess.controller.command.Start;
+import chess.controller.command.Status;
 import chess.domain.position.Position;
 import java.util.Set;
 import java.util.function.Function;
@@ -13,6 +14,7 @@ public enum CommandMapper {
     START(input -> input.equals("start"), input -> new Start()),
     END(input -> input.equals("end"), input -> new End()),
     MOVE(CommandMapper::isMove, CommandMapper::toMove),
+    STATUS(input -> input.equals("status"), input -> new Status()),
     ;
 
     private final Function<String, Boolean> isCommand;
@@ -46,7 +48,7 @@ public enum CommandMapper {
     }
 
     public static Command toFollowingCommand(String input) {
-        return toCommand(Set.of(MOVE, END), input);
+        return toCommand(Set.of(MOVE, STATUS, END), input);
     }
 
     private static Command toCommand(Set<CommandMapper> commands, String input) {
