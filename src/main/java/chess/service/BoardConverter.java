@@ -1,14 +1,15 @@
 package chess.service;
 
 import chess.domain.piece.Bishop;
+import chess.domain.piece.BlackPawn;
 import chess.domain.piece.Empty;
 import chess.domain.piece.King;
 import chess.domain.piece.Knight;
-import chess.domain.piece.Pawn;
 import chess.domain.piece.Piece;
 import chess.domain.piece.Queen;
 import chess.domain.piece.Rook;
 import chess.domain.piece.Side;
+import chess.domain.piece.WhitePawn;
 import chess.domain.position.Position;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -30,8 +31,8 @@ public enum BoardConverter {
     WHITE_QUEEN(() -> new Queen(Side.WHITE), "q"),
     BLACK_KING(() -> new King(Side.BLACK), "K"),
     WHITE_KING(() -> new King(Side.WHITE), "k"),
-    BLACK_PAWN(() -> new Pawn(Side.BLACK), "P"),
-    WHITE_PAWN(() -> new Pawn(Side.WHITE), "p"),
+    BLACK_PAWN(BlackPawn::new, "P"),
+    WHITE_PAWN(WhitePawn::new, "p"),
     EMPTY(Empty::instance, "."),
     ;
 

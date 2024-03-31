@@ -1,13 +1,14 @@
 package chess.view.mapper;
 
 import chess.domain.piece.Bishop;
+import chess.domain.piece.BlackPawn;
 import chess.domain.piece.Empty;
 import chess.domain.piece.King;
 import chess.domain.piece.Knight;
-import chess.domain.piece.Pawn;
 import chess.domain.piece.Piece;
 import chess.domain.piece.Queen;
 import chess.domain.piece.Rook;
+import chess.domain.piece.WhitePawn;
 import java.util.Arrays;
 
 public enum PieceMapper {
@@ -17,7 +18,8 @@ public enum PieceMapper {
     BISHOP(Bishop.class, "b"),
     QUEEN(Queen.class, "q"),
     KING(King.class, "k"),
-    PAWN(Pawn.class, "p"),
+    BLACK_PAWN(BlackPawn.class, "P"),
+    WHITE_PAWN(WhitePawn.class, "p"),
     EMPTY(Empty.class, "."),
     ;
 

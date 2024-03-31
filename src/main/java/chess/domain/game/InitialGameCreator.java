@@ -1,13 +1,14 @@
 package chess.domain.game;
 
 import chess.domain.board.BoardStatus;
+import chess.domain.piece.BlackPawn;
 import chess.domain.piece.Side;
+import chess.domain.piece.WhitePawn;
 import chess.domain.position.Position;
 import chess.domain.piece.Bishop;
 import chess.domain.piece.Empty;
 import chess.domain.piece.King;
 import chess.domain.piece.Knight;
-import chess.domain.piece.Pawn;
 import chess.domain.piece.Piece;
 import chess.domain.piece.Queen;
 import chess.domain.piece.Rook;
@@ -34,6 +35,8 @@ public class InitialGameCreator implements GameCreator {
     private void initializeSquares(Map<Position, Piece> board) {
         initializeSide(board, Side.BLACK);
         initializeSide(board, Side.WHITE);
+        initializePieces(board, InitialPosition.PAWN.positions(Side.BLACK), new BlackPawn());
+        initializePieces(board, InitialPosition.PAWN.positions(Side.WHITE), new WhitePawn());
     }
 
     private void initializeSide(Map<Position, Piece> board, Side side) {
@@ -42,7 +45,6 @@ public class InitialGameCreator implements GameCreator {
         initializePieces(board, InitialPosition.BISHOP.positions(side), new Bishop(side));
         initializePieces(board, InitialPosition.QUEEN.positions(side), new Queen(side));
         initializePieces(board, InitialPosition.KING.positions(side), new King(side));
-        initializePieces(board, InitialPosition.PAWN.positions(side), new Pawn(side));
     }
 
     private void initializePieces(Map<Position, Piece> board, List<Position> initialPositions, Piece piece) {
