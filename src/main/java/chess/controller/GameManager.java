@@ -2,7 +2,8 @@ package chess.controller;
 
 import chess.controller.command.Command;
 import chess.domain.game.Game;
-import chess.domain.game.InitialGameCreator;
+import chess.service.GameDaoImpl;
+import chess.service.GameService;
 import chess.view.InputView;
 import chess.view.OutputView;
 
@@ -17,14 +18,15 @@ public class GameManager {
     }
 
     public void run() {
-        Game game = new Game(new InitialGameCreator());
+        GameService gameService = new GameService(new GameDaoImpl());
+        outputView.printCommandGuide();
 
-        Command command = inputView.readFirstCommand();
-        command.execute(game, outputView);
+        Command command = inputView.readCommand();
+        Game game = command.execute(gameService, outputView);
 
         while (command.isNotEnd() && game.isNotKingDead()) {
-            command = inputView.readFollowingCommand();
-            command.execute(game, outputView);
+            command = inputView.readCommand();
+            command.execute(game, gameService, outputView);
         }
     }
 }
