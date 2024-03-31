@@ -12,11 +12,19 @@ public class OutputView {
         this.messageResolver = messageResolver;
     }
 
+    public void printCommandGuide() {
+        System.out.println(messageResolver.resolveCommandGuide());
+    }
+
     public void printBoard(List<Piece> pieces) {
         System.out.println(messageResolver.resolveBoardMessage(pieces));
     }
 
     public void printScore(Score score) {
         System.out.println(messageResolver.resolveScoreMessage(score));
+    }
+
+    public void printSaveCommandGuide() {
+        System.out.println("체스 게임을 저장하였습니다.");
     }
 }

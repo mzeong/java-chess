@@ -3,18 +3,22 @@ package chess.view.mapper;
 import chess.controller.command.Command;
 import chess.controller.command.End;
 import chess.controller.command.Move;
+import chess.controller.command.Resume;
+import chess.controller.command.Save;
 import chess.controller.command.Start;
 import chess.controller.command.Status;
 import chess.domain.position.Position;
-import java.util.Set;
+import java.util.Arrays;
 import java.util.function.Function;
 
 public enum CommandMapper {
 
     START(input -> input.equals("start"), input -> new Start()),
+    RESUME(input -> input.equals("resume"), input -> new Resume()),
     END(input -> input.equals("end"), input -> new End()),
     MOVE(CommandMapper::isMove, CommandMapper::toMove),
     STATUS(input -> input.equals("status"), input -> new Status()),
+    SAVE(input -> input.equals("save"), input -> new Save()),
     ;
 
     private final Function<String, Boolean> isCommand;
@@ -43,19 +47,11 @@ public enum CommandMapper {
         return new Position(FileMapper.from(file), RankMapper.from(rank));
     }
 
-    public static Command toFirstCommand(String input) {
-        return toCommand(Set.of(START, END), input);
-    }
-
-    public static Command toFollowingCommand(String input) {
-        return toCommand(Set.of(MOVE, STATUS, END), input);
-    }
-
-    private static Command toCommand(Set<CommandMapper> commands, String input) {
-        return commands.stream()
+    public static Command toCommand(String input) {
+        return Arrays.stream(values())
                 .filter(it -> it.isCommand.apply(input))
                 .findAny()
                 .map(it -> it.toCommand.apply(input))
-                .orElseThrow(() -> new IllegalArgumentException("사용할 수 없는 명령어입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 명령어입니다."));
     }
 }
