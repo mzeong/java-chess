@@ -32,7 +32,7 @@ public enum PieceMapper {
     public static String toText(Piece piece) {
         String text = Arrays.stream(values())
                 .filter(it -> it.pieceClass == piece.getClass())
-                .findFirst()
+                .findAny()
                 .map(it -> it.text)
                 .orElseThrow(IllegalArgumentException::new);
 
