@@ -60,4 +60,8 @@ public class MessageResolver {
         }
         return "없음";
     }
+
+    public String resolveSaveCommandGuideMessage() {
+        return String.join("", "체스 게임을 저장하였습니다.", LINE_SEPARATOR);
+    }
 }

@@ -25,6 +25,6 @@ public class OutputView {
     }
 
     public void printSaveCommandGuide() {
-        System.out.println("체스 게임을 저장하였습니다.");
+        System.out.println(messageResolver.resolveSaveCommandGuideMessage());
     }
 }
