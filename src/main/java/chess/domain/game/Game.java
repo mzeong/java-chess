@@ -36,10 +36,6 @@ public class Game {
         return !boardStatus.isKingDead();
     }
 
-    public List<Piece> board() {
-        return board.pieces();
-    }
-
     public Score calculateScore() {
         double blackScore = calculateSideScore(Side.BLACK);
         double whiteScore = calculateSideScore(Side.WHITE);
@@ -50,5 +46,13 @@ public class Game {
         return Arrays.stream(File.values())
                 .mapToDouble(file -> board.calculateSameSidePiecesScoreInFile(side, file))
                 .sum();
+    }
+
+    public List<Piece> board() {
+        return board.pieces();
+    }
+
+    public BoardStatus boardStatus() {
+        return boardStatus;
     }
 }
