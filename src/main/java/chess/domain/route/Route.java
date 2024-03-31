@@ -24,7 +24,7 @@ public class Route {
         return new Route(pathPieces, targetPiece);
     }
 
-    public boolean notAllPathPiecesEmpty() {
+    public boolean hasNonEmptyPathPieces() {
         return pathPieces.stream()
                 .anyMatch(Piece::isNotEmpty);
     }

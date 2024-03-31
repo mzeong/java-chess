@@ -40,7 +40,7 @@ public abstract class Piece {
     }
 
     private void checkNoPathPieces(Route route) {
-        if (route.notAllPathPiecesEmpty()) {
+        if (route.hasNonEmptyPathPieces()) {
             throw new IllegalArgumentException("source 위치에서 target 위치까지의 경로에 기물이 존재하면 이동할 수 없습니다.");
         }
     }

@@ -15,7 +15,7 @@ class RouteTest {
     void notAllPathPiecesEmpty() {
         Route route = new Route(List.of(EMPTY, BLACK_ROOK), EMPTY);
 
-        boolean actual = route.notAllPathPiecesEmpty();
+        boolean actual = route.hasNonEmptyPathPieces();
 
         assertThat(actual).isTrue();
     }
@@ -25,7 +25,7 @@ class RouteTest {
     void allPathPiecesEmpty() {
         Route route = new Route(List.of(EMPTY, EMPTY), EMPTY);
 
-        boolean actual = route.notAllPathPiecesEmpty();
+        boolean actual = route.hasNonEmptyPathPieces();
 
         assertThat(actual).isFalse();
     }
