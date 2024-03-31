@@ -62,7 +62,7 @@ public abstract class Piece {
     }
 
     public boolean isOpponentSide(Side otherSide) {
-        return side.opponent().isSame(otherSide);
+        return side.isOpponentTo(otherSide);
     }
 
     public boolean isEmpty() {
