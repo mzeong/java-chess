@@ -5,7 +5,6 @@ import chess.domain.piece.Side;
 import chess.domain.position.File;
 import chess.domain.route.Route;
 import chess.domain.route.Path;
-import chess.domain.route.Pieces;
 import chess.domain.position.Position;
 import chess.domain.piece.Empty;
 import chess.domain.piece.Piece;
@@ -42,13 +41,11 @@ public class Board {
         return board.get(position);
     }
 
-    public Pieces findPieces(Path path) {
-        List<Piece> pieces = board.entrySet().stream()
-                .filter(entry -> path.contains(entry.getKey()))
-                .map(Entry::getValue)
+    public List<Piece> findPieces(Path path) {
+        return board.keySet().stream()
+                .filter(path::contains)
+                .map(board::get)
                 .toList();
-
-        return new Pieces(pieces);
     }
 
     public double calculateSameSidePiecesScoreInFile(Side side, File file) {

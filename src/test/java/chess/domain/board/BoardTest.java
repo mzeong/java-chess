@@ -7,7 +7,6 @@ import chess.domain.piece.Side;
 import chess.domain.position.File;
 import chess.domain.position.Position;
 import chess.domain.route.Path;
-import chess.domain.route.Pieces;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,11 +71,9 @@ public class BoardTest {
         Board board = Board.from(new InitialGameCreator());
         Path path = new Path(List.of(A7, A6, A5, A4, A3, A2));
 
-        Pieces pieces = board.findPieces(path);
+        List<Piece> pieces = board.findPieces(path);
 
-        assertThat(pieces).isEqualTo(new Pieces(List.of(
-                BLACK_PAWN, EMPTY, EMPTY, EMPTY, EMPTY, WHITE_PAWN
-        )));
+        assertThat(pieces).isEqualTo(List.of(BLACK_PAWN, EMPTY, EMPTY, EMPTY, EMPTY, WHITE_PAWN));
     }
 
     @DisplayName("기물을 source 위치에서 target 위치로 옮긴다.")
