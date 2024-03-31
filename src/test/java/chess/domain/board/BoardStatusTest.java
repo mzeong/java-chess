@@ -1,16 +1,21 @@
 package chess.domain.board;
 
+import static chess.fixture.PieceFixture.BLACK_BISHOP;
+import static chess.fixture.PieceFixture.BLACK_KING;
+import static chess.fixture.PieceFixture.BLACK_KNIGHT;
 import static chess.fixture.PieceFixture.BLACK_PAWN;
+import static chess.fixture.PieceFixture.BLACK_QUEEN;
+import static chess.fixture.PieceFixture.BLACK_ROOK;
+import static chess.fixture.PieceFixture.WHITE_BISHOP;
+import static chess.fixture.PieceFixture.WHITE_KING;
+import static chess.fixture.PieceFixture.WHITE_KNIGHT;
 import static chess.fixture.PieceFixture.WHITE_PAWN;
+import static chess.fixture.PieceFixture.WHITE_QUEEN;
+import static chess.fixture.PieceFixture.WHITE_ROOK;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import chess.domain.piece.Bishop;
 import chess.domain.piece.King;
-import chess.domain.piece.Knight;
-import chess.domain.piece.Pawn;
 import chess.domain.piece.Piece;
-import chess.domain.piece.Queen;
-import chess.domain.piece.Rook;
 import chess.domain.piece.Side;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -41,12 +46,12 @@ class BoardStatusTest {
 
     private static Stream<Arguments> whitePieces() {
         return Stream.of(
-                Arguments.arguments(new Rook(Side.WHITE)),
-                Arguments.arguments(new Knight(Side.WHITE)),
-                Arguments.arguments(new Bishop(Side.WHITE)),
-                Arguments.arguments(new Queen(Side.WHITE)),
-                Arguments.arguments(new King(Side.WHITE)),
-                Arguments.arguments(new Pawn(Side.WHITE))
+                Arguments.arguments(WHITE_ROOK),
+                Arguments.arguments(WHITE_KNIGHT),
+                Arguments.arguments(WHITE_BISHOP),
+                Arguments.arguments(WHITE_QUEEN),
+                Arguments.arguments(WHITE_KING),
+                Arguments.arguments(WHITE_PAWN)
         );
     }
 
@@ -61,12 +66,12 @@ class BoardStatusTest {
 
     private static Stream<Arguments> blackPieces() {
         return Stream.of(
-                Arguments.arguments(new Rook(Side.BLACK)),
-                Arguments.arguments(new Knight(Side.BLACK)),
-                Arguments.arguments(new Bishop(Side.BLACK)),
-                Arguments.arguments(new Queen(Side.BLACK)),
-                Arguments.arguments(new King(Side.BLACK)),
-                Arguments.arguments(new Pawn(Side.BLACK))
+                Arguments.arguments(BLACK_ROOK),
+                Arguments.arguments(BLACK_KNIGHT),
+                Arguments.arguments(BLACK_BISHOP),
+                Arguments.arguments(BLACK_QUEEN),
+                Arguments.arguments(BLACK_KING),
+                Arguments.arguments(BLACK_PAWN)
         );
     }
 }
