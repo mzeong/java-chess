@@ -11,7 +11,7 @@ public class King extends Piece {
     }
 
     @Override
-    boolean hasFollowedRule(Position source, Position target, Route route) {
+    protected boolean hasFollowedRule(Position source, Position target, Route route) {
         return (source.isSameFile(target) || source.hasOneFileGap(target)) &&
                 (source.isSameRank(target) || source.hasOneRankGap(target));
     }

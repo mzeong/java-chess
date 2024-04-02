@@ -12,7 +12,7 @@ public class WhitePawn extends Pawn {
     }
 
     @Override
-    boolean isAttackable(Position source, Position target, Route route) {
+    protected boolean isAttackable(Position source, Position target, Route route) {
         return isUpDiagonal(source, target) && route.isOpponentTargetPiece(Side.WHITE);
     }
 
@@ -21,7 +21,7 @@ public class WhitePawn extends Pawn {
     }
 
     @Override
-    boolean isTwoForwardFromInitialPosition(Position source, Position target) {
+    protected boolean isTwoForwardFromInitialPosition(Position source, Position target) {
         return isInitialPosition(source) && isUpTwo(source, target);
     }
 
@@ -35,7 +35,7 @@ public class WhitePawn extends Pawn {
     }
 
     @Override
-    boolean isOneForward(Position source, Position target) {
+    protected boolean isOneForward(Position source, Position target) {
         return target.hasHigherRankByOne(source) && source.isSameFile(target);
     }
 }

@@ -10,14 +10,14 @@ public abstract class Pawn extends Piece {
         super(side);
     }
 
-    abstract boolean isAttackable(Position source, Position target, Route route);
+    protected abstract boolean isAttackable(Position source, Position target, Route route);
 
-    abstract boolean isTwoForwardFromInitialPosition(Position source, Position target);
+    protected abstract boolean isTwoForwardFromInitialPosition(Position source, Position target);
 
-    abstract boolean isOneForward(Position source, Position target);
+    protected abstract boolean isOneForward(Position source, Position target);
 
     @Override
-    boolean hasFollowedRule(Position source, Position target, Route route) {
+    protected boolean hasFollowedRule(Position source, Position target, Route route) {
         return isAttackable(source, target, route) ||
                 isNotAttack(route) && (isTwoForwardFromInitialPosition(source, target) || isOneForward(source, target));
     }

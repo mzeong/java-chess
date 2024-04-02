@@ -13,7 +13,7 @@ public abstract class Piece {
         this.side = side;
     }
 
-    abstract boolean hasFollowedRule(Position source, Position target, Route route);
+    protected abstract boolean hasFollowedRule(Position source, Position target, Route route);
 
     public abstract double score(List<Piece> pieces);
 
