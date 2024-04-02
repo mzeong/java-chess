@@ -23,7 +23,7 @@ public class GameService {
     }
 
     public GameCreator load() {
-        GameDaoImpl.BoardData boardData = gameDao.find();
+        BoardData boardData = gameDao.find();
         String convertedBoard = boardData.pieces();
         String convertedBoardStatus = boardData.status();
 
