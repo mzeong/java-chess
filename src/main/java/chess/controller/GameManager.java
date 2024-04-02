@@ -2,6 +2,7 @@ package chess.controller;
 
 import chess.controller.command.Command;
 import chess.domain.game.Game;
+import chess.service.DatabaseConnector;
 import chess.service.GameDaoImpl;
 import chess.service.GameService;
 import chess.view.InputView;
@@ -18,7 +19,7 @@ public class GameManager {
     }
 
     public void run() {
-        GameService gameService = new GameService(new GameDaoImpl());
+        GameService gameService = new GameService(new GameDaoImpl(new DatabaseConnector()));
         outputView.printCommandGuide();
 
         Command command = inputView.readCommand();
