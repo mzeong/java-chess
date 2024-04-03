@@ -64,8 +64,8 @@ public enum BoardConverter {
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 String"));
     }
 
-    public static String convertToString(List<Piece> object) {
-        return object.stream()
+    public static String convertToString(List<Piece> pieces) {
+        return pieces.stream()
                 .map(BoardConverter::toString)
                 .collect(Collectors.joining(""));
     }
