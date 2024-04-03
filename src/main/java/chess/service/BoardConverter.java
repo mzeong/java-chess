@@ -56,7 +56,7 @@ public enum BoardConverter {
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 Piece"));
     }
 
-    private static Piece toObject(String string) {
+    private static Piece toPiece(String string) {
         return Arrays.stream(values())
                 .filter(it -> it.string.equals(string))
                 .findAny()
@@ -90,7 +90,7 @@ public enum BoardConverter {
         String[] split = string.split("");
 
         return Arrays.stream(split)
-                .map(BoardConverter::toObject)
+                .map(BoardConverter::toPiece)
                 .toList();
     }
 
