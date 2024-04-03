@@ -1,4 +1,4 @@
 package chess.service;
 
-record BoardData(String pieces, String status) {
+public record BoardData(String pieces, String status) {
 }
